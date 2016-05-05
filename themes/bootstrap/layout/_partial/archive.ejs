@@ -1,0 +1,62 @@
+<% if (pagination == 2){ %>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 blog-main">
+        <% page.posts.each(function(post, i){ %>
+            <%- partial('article', {post: post, index: true}) %>
+        <% }) %>
+        </div>
+    </div>
+<% } else { %>
+    <% var last = null; %>
+    <% var last_post_month = null; %>
+    <% page.posts.each(function(post, i) { %>
+        <% if ( !post.advertisement ) { %>
+            <% var year = post.date.year(); %>
+            <% var this_month = post.date.month(); %>
+            <% if (last != year) { %>
+                <% if (last != null) { %>
+                    <% last_post_month = null; %>
+                    </div></div></li></ul></div></div></div>
+                <% } %>
+                <% last = year; %>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 blog-main">
+                        <div class="archive-year-wrap">
+                            <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
+                        </div>
+                        <div class="archives">
+                            <ul class="timeline">
+            <% } %>
+            <!-- 分月 -->
+            <% var this_post_month = post.date.month()+1; %>
+            <% if( last_post_month != this_post_month ) { %>
+                <% if( last_post_month != null ) { %>
+                    </div></div></li>
+                <% } %>
+                <% last_post_month = this_post_month; %>
+                <% if (this_post_month % 2 == 0) { %>
+                <li class="archive-article archive-type-<%= post.layout %> timeline-inverted">
+                <% } else { %>
+                <li class="archive-article archive-type-<%= post.layout %>">
+                <% } %>
+                    <div class="zz-timeline-month-<%=this_post_month%> timeline-badge"><%= this_post_month%></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+            <% } %>
+            <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+        <% } else { %>
+           <!-- 推广 -->
+        <% } %>
+    <% }) %>
+    <% if (page.posts.length) { %>
+        </div></div></li></ul></div></div></div>
+    <% } %>
+<% } %>
+<% if (page.total > 1){ %>
+    <div id="page-nav">
+    <%- bs_paginator({
+        prev_text: '<i class="fa fa-chevron-left"></i>',
+        next_text: '<i class="fa fa-chevron-right"></i>'
+    }) %>
+    </div>
+<% } %>

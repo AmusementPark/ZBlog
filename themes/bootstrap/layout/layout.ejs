@@ -1,0 +1,15 @@
+<%- partial('_partial/head') %>
+<body>
+    <%- partial('_partial/masthead') %>
+    <% if(url_for(path).indexOf('/about/') != -1 ) { %>
+        <%- body %>
+    <% } else { %>
+        <div class="container container-main">
+            <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+            <%- body %>
+        </div>
+    <% } %>
+    <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+    <%- partial('_partial/inline-scripts') %>
+</body>
+</html>

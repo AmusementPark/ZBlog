@@ -26,4 +26,4 @@ tags:
 
 ![Eclipse 网络代理设置](/images/2016-05-06_09_00_00/eclipse-preferences_2.jpg)
 
-接下来，打开Eclipse MarketPlace，或者加入一段maven依赖，检验下是否成功吧 :) 这样的配置可以同样适用在其他的IDE(如：JetBrain系列的IDE)或者命令行。
+接下来，打开Eclipse MarketPlace，或者加入一段maven依赖，检验下是否成功吧 :-) 这样的配置可以同样适用在其他的IDE(如：JetBrain系列的IDE)或者命令行。

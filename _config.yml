@@ -63,7 +63,7 @@ per_page: 10
 pagination_dir: page
 
 # Disqus
-disqus_shortname: zshzcc-dev
+disqus_shortname: zshzcc
 
 # 不同入口定义
 archive: 1
